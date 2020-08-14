@@ -1,0 +1,19 @@
+{
+	"start_url": "https://www.achimba.online/sampler/sampler.html",
+	"scope": "/sampler/",
+	"name": "Mitch's Sampler",
+	"short_name": "Sampler",
+	"categories": "music",
+	"description": "Mitch's Sampler Web App",
+	"icons": [{
+		"sizes": "192x192",
+		"src": "https://www.achimba.online/sampler/img/android-chrome-192x192.png",
+		"type": "image/png"
+	}],
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff",
+	"lang": "en",
+	"dir": "ltr",
+	"display": "fullscreen",
+	"orientation": "portrait"
+}
