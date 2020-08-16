@@ -4,7 +4,10 @@ self.addEventListener("install", function(event) {
             return cache.addAll([
                 "sampler.html",
                 "sampler.css",
-                "sampler.js"
+                "sampler.js",
+				"img/android-chrome-192x192.png",
+				"img/restart.svg",
+				"img/loop.svg"
             ]);
         })
     );
@@ -21,7 +24,7 @@ self.addEventListener("fetch", function(event) {
                 return response;
             });
         }).catch(function() {
-            //return caches.match("img/skull.gif");
+            return caches.match("favicon.ico");
         })
     );
 });

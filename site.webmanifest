@@ -10,8 +10,8 @@
 		"src": "https://www.achimba.online/sampler/img/android-chrome-192x192.png",
 		"type": "image/png"
 	}],
-	"background_color": "#ffffff",
-	"theme_color": "#ffffff",
+	"background_color": "#c0c0c0",
+	"theme_color": "#c0c0c0",
 	"lang": "en",
 	"dir": "ltr",
 	"display": "fullscreen",
