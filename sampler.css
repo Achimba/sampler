@@ -1,16 +1,17 @@
 ﻿* { box-sizing: border-box; }
 *:focus { outline: none; }
 button[disabled], input[disabled] { border-color: black; background-color: lightgray; color: black; opacity: 0.2; }
-.body { margin: 0px; border: 0px; padding: 0px; width: 100vw; height: 100vh; position: relative; background-color: #c0c0c0; }
+.body { margin: 0px; border: 0px; padding: 0px; width: 100vw; height: 100vh; position: relative; background-color: #696969; }
 .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 .container { height: 100%; width: 100%; overflow: hidden; }
-.select { display: block; width: 100%; height: 4%; font-size: 3vmax; }
+.select { display: block; width: 100%; height: 4%; font-size: 3vmax; margin: 0px 0px 3px 0px; }
 .audio { display: none; width: 0px; height: 0px; }
-.sampler-button { overflow: hidden; display: inline-block; float: left; width: 50%; height: 24%; margin: 0px; border: 0px; padding: 0px; }
-.play-button { display: inline-block; float:left;  width: 80%; height: 100%; margin: 0px; border: 7px double red; padding: 0px; font-size: 8vmax; background-color: #fde2e2; }
-.play-button.playing { border-color: green; background-color: lightgreen; }
-.checkboxes { display: inline-block; width: 20%; height: 100%; padding: 2px; }
-.checkbox-button { appearance: none; display: inline-block; float: left; width: 100%; height: 24%; margin: 0px 0px 5% 0px; border: 2px solid red; padding: 0px; background-color: #fde2e2; }
-.checkbox-button:checked { border-color: green; background-color: lightgreen; }
+.sampler-button { overflow: hidden; display: inline-block; float: left; width: 50%; height: 24%; margin: 0px; border: 0px; padding: 0px 0px 3px 0px; }
+.play-button { display: inline-block; float:left;  width: 80%; height: 100%; margin: 0px; border: 2px ridge red; border-radius: 7px; padding: 0px; font-size: 4vmax; background-color: #fde2e2; }
+.play-button.playing { border: 2px inset green; background-color: lightgreen; }
+.play-button.playing { border: 2px inset green; background-color: lightgreen; }
+.checkboxes { display: inline-block; width: 20%; height: 100%; padding: 0px 3px 3px 3px; }
+.checkbox-button { appearance: none; display: inline-block; float: left; width: 100%; height: 24%; margin: 0px 0px 3px 0px; border: 2px outset red; border-radius: 7px; padding: 0px; background-color: #fde2e2; }
+.checkbox-button:checked { border: 2px inset green; background-color: lightgreen; }
 .checkbox-button-restart { background-image: url('img/restart.svg'); background-position: center center; background-repeat: no-repeat; background-size: 90%; }
 .checkbox-button-loop { background-image: url('img/loop.svg'); background-position: center center; background-repeat: no-repeat; background-size: 90%; }

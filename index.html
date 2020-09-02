@@ -7,23 +7,25 @@
 	<meta name="generator" content="Mitch Dombrausky's Brain">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" />
 	<meta name="google" content="notranslate">
-	<meta name="theme-color" content="#c0c0c0">
-	<link rel="manifest" type="application/manifest+json" href="site.webmanifest">
-	<link rel="stylesheet" type="text/css" href="sampler.css">
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<meta name="theme-color" content="#696969">
 	<meta name="msapplication-config" content="browserconfig.xml">
-	<meta name="msapplication-TileColor" content="#c0c0c0">
+	<meta name="msapplication-TileColor" content="#696969">
 	<meta name="msapplication-TileImage" content="img/mstile-144x144.png">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-	<meta name="apple-mobile-web-app-title" content="Mitch's Sampler Web App">
+	<meta name="apple-mobile-web-app-title" content="Mitch's Sampler">
+	<link rel="manifest" type="application/manifest+json" href="site.webmanifest">
+	<link rel="stylesheet" type="text/css" href="sampler.css">
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+	<script type="text/javascript" src="sample_sets.js"></script>
 </head>
 <body class="body noselect">
 	<div class="container">
-		<select id="sampleSet" class="select">
-			<option>1</option>
-			<option>2</option>
-		</select>
+		<select id="sampleSet" class="select"></select>
+
 		<audio id="audio0" class="audio" src="samples/1/1.wav" preload></audio>
 		<audio id="audio1" class="audio" src="samples/1/2.wav" preload></audio>
 		<audio id="audio2" class="audio" src="samples/1/3.wav" preload></audio>
@@ -32,6 +34,7 @@
 		<audio id="audio5" class="audio" src="samples/1/6.wav" preload></audio>
 		<audio id="audio6" class="audio" src="samples/1/7.wav" preload></audio>
 		<audio id="audio7" class="audio" src="samples/1/8.wav" preload></audio>
+
 		<div class="sampler-button">
 			<button id="play0" class="play-button" data-playing="false">1</button>
 			<div class="checkboxes">
@@ -89,6 +92,6 @@
 			</div>
 		</div>
 	</div>
-	<script src="sampler.js"></script>
+	<script type="text/javascript" src="sampler.js"></script>
 </body>
 </html>

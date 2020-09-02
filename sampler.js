@@ -1,7 +1,5 @@
 ﻿"use strict";
 
-// --- SERVICE WORKER
-
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").then(function(reg) {
         if (reg.installing) {
@@ -16,60 +14,52 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-// --- GLOBALS
-
 const audioContext = new AudioContext();
 
-// --- CHANGE SAMPLE SET
-
-const sampleSet1 = ['samples/1/1.wav', 
-					'samples/1/2.wav', 
-					'samples/1/3.wav', 
-					'samples/1/4.wav', 
-					'samples/1/5.wav', 
-					'samples/1/6.wav', 
-					'samples/1/7.wav', 
-					'samples/1/8.wav'];
-
-const sampleSet2 = ['samples/2/1.wav', 
-					'samples/2/2.wav', 
-					null, 
-					null, 
-					null, 
-					null, 
-					null, 
-					null];
-
-const sampleSetArray = [sampleSet1, sampleSet2];
-
 function changeSampleSet(sampleSetId) {
-	var selectedSampleSet = sampleSetArray[sampleSetId - 1];
+	var selectedSampleSet = gSampleSetData[sampleSetId - 1][1];
 	for (var i = 0; i < selectedSampleSet.length; i++) {
+		var sampleSrc = null;
+		var name = null;
+		var restart = false;
+		var loop = false;
+
+		if (selectedSampleSet[i] != null) {
+			sampleSrc = selectedSampleSet[i][0];
+			name = selectedSampleSet[i][1];
+			restart = selectedSampleSet[i][2];
+			loop = selectedSampleSet[i][3];
+		}
+
 		var audioElement = document.getElementById('audio' + i);
 		audioElement.pause();
+		audioElement.removeAttribute('loop');
 		var buttonElement = document.getElementById('play' + i);
 		buttonElement.classList.remove('playing');
 		var restartCheckbox = document.getElementById('play' + i + "chk1");
-		restartCheckbox.checked = false;
+		restartCheckbox.checked = restart;
 		var loopCheckbox = document.getElementById('play' + i + "chk2");
-		loopCheckbox.checked = false;
-		var sampleSrc = selectedSampleSet[i];
+		loopCheckbox.checked = loop;
+
 		if (sampleSrc === null) {
 			audioElement.removeAttribute('src');
 			buttonElement.setAttribute('disabled', 'disabled');
+			buttonElement.innerText = i + 1;
 			restartCheckbox.setAttribute('disabled', 'disabled');
 			loopCheckbox.setAttribute('disabled', 'disabled');
 		} else {
 			loopCheckbox.removeAttribute('disabled');
 			restartCheckbox.removeAttribute('disabled');
 			buttonElement.removeAttribute('disabled');
+			buttonElement.innerText = name;
 			audioElement.setAttribute('src', sampleSrc);
+			if (loop === true) {
+				audioElement.setAttribute('loop', 'loop');
+			}
 			audioElement.load();
 		}
 	}
 }
-
-// --- INIT AUDIO ELEMENTS
 
 function getAudioElement(id) {
 	var audioElement = document.getElementById(id);
@@ -85,18 +75,23 @@ function attachEventListeners(audioElement, buttonElement) {
 		if (audioContext.state === 'suspended') {
 			audioContext.resume();
 		}
+		var restartButton = document.getElementById(buttonElementId + "chk1");
 		if (this.dataset.playing === 'false') {
-			var restartButton = document.getElementById(buttonElementId + "chk1");
- 			if (restartButton && restartButton.checked) {
+ 			if (restartButton.checked) {
 				audioElement.load();
 			}
  			audioElement.play();
 			this.dataset.playing = 'true';
 			this.classList.add('playing');
 		} else if (this.dataset.playing === 'true') {
-			audioElement.pause();
-			this.dataset.playing = 'false';
-			this.classList.remove('playing');
+ 			if (restartButton.checked) {
+				audioElement.load();
+				audioElement.play();
+			} else {
+				audioElement.pause();
+				this.dataset.playing = 'false';
+				this.classList.remove('playing');
+			}
 		}
 	}, false);
 
@@ -121,9 +116,7 @@ function initAudio(audioId, buttonId) {
 	attachEventListeners(audioElement, playButton);
 }
 
-// --- INIT PAGE
-
-window.addEventListener("DOMContentLoaded", function(e) {
+function initAudioElements() {
 	initAudio('audio0', 'play0');
 	initAudio('audio1', 'play1');
 	initAudio('audio2', 'play2');
@@ -132,7 +125,25 @@ window.addEventListener("DOMContentLoaded", function(e) {
 	initAudio('audio5', 'play5');
 	initAudio('audio6', 'play6');
 	initAudio('audio7', 'play7');
+}
 
+function populateSampleSetSelect() {
+	var selectSampleSet = document.getElementById('sampleSet');
+	for (var i = selectSampleSet.length - 1; i >= 0; i--) {
+		selectSampleSet.remove(i);
+	}	
+	for (var x = 0; x < gSampleSetData.length; x++) {
+		var optionString = '<option>' + gSampleSetData[x][0] + '</option>';
+		selectSampleSet.insertAdjacentHTML('beforeend', optionString);
+	}
+}
+
+function initSampleSetSelect() {
+	populateSampleSetSelect();
+	changeSampleSet(1);
+}
+
+function initAttachListeners() {
 	var selectElement = document.getElementById('sampleSet');
 	selectElement.addEventListener('change', function () {
 		changeSampleSet(this.value);
@@ -141,4 +152,14 @@ window.addEventListener("DOMContentLoaded", function(e) {
 	document.addEventListener("onselectstart", function () {
 		return false;
 	}, false);
+}
+
+function initPage() {
+	initAudioElements();
+	initSampleSetSelect();
+	initAttachListeners();
+}
+
+window.addEventListener("DOMContentLoaded", function(e) {
+	initPage();
 });

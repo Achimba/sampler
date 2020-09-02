@@ -1,17 +1,24 @@
 {
-	"start_url": "https://www.achimba.online/sampler/sampler.html",
+	"start_url": "https://www.achimba.online/sampler/index.html",
 	"scope": "/sampler/",
 	"name": "Mitch's Sampler",
 	"short_name": "Sampler",
 	"categories": "music",
-	"description": "Mitch's Sampler Web App",
-	"icons": [{
-		"sizes": "192x192",
-		"src": "https://www.achimba.online/sampler/img/android-chrome-192x192.png",
-		"type": "image/png"
-	}],
-	"background_color": "#c0c0c0",
-	"theme_color": "#c0c0c0",
+	"description": "My sampler web app for playing audio samples for performances.",
+	"icons": [
+		{
+			"sizes": "192x192",
+			"src": "https://www.achimba.online/sampler/img/android-chrome-192x192.png",
+			"type": "image/png"
+		},
+		{
+			"sizes": "512x512",
+			"src": "https://www.achimba.online/sampler/img/android-chrome-512x512.png",
+			"type": "image/png"
+		}
+	],
+	"background_color": "#696969",
+	"theme_color": "#696969",
 	"lang": "en",
 	"dir": "ltr",
 	"display": "fullscreen",
